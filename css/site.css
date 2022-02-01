@@ -1,12 +1,12 @@
 :root {
-    --primary-color: #1d5888;
-    --secondary-color: #ff993b;
+    --primary-color: #000;
+    --secondary-color: #ffcd05;
     --dark-color: #292929;
     --white-color: #e7e7e7;
 }
 
 .logoFont {
-    font-family: 'Black Ops One', cursive; /* from Google fonts */
+    font-family: 'Rye', cursive; /* from Google fonts */
 }
 
 body {

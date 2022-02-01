@@ -14,7 +14,7 @@
     <!-- Google Fonts API -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
 
@@ -58,13 +58,59 @@
      <!-- MAIN SECTION -->
      <main class="flex-shrink-0">
          <div class="container px-5 pt-5">
-            <h2 class="border-1 border-bottom border-dark pt-5">The Code for DEIFIED</h2>
+            <h2 class="border-1 border-bottom border-dark pt-5">The Code for <span class="logoFont">DEIFIED</span></h2>
             <div class="row g-5 pt-3 row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello World 
-                        function helloWorld(){
-                            alert("Hello World!");
+                        // get user string
+                        function getValue(){
+                            // remove prev msg in case of multiple checks
+                            document.getElementById("alert").classList.remove("invisible");
+                            //get user string
+                            let uVal = document.getElementById("userString").value;
+
+                            //check for a palindrome
+                            let returnObj = palinCheck(uVal);
+                            //display out message to screen
+                            showMessage(returnObj);
+                        }
+
+                        // check if string is palindrome
+                        function palinCheck(uString){
+                            //make lower case
+                            uString = uString.toLowerCase();
+
+                            // ** Remove special chars/spaces **
+                            // Will only return values a through z & 0 through 9
+                            let regex = /[^a-z0-9]/gi;
+                            uString = uString.replace(regex,"");
+
+                            let revString = [];
+                            let returnObj = {};
+
+                            for(let i = uString.length -1; i >= 0; i--){
+                                revString += uString[i];
+                            }
+
+                            if(revString == uString){
+                                returnObj.msg = "Well done! You entered a palindrome!";
+                                document.getElementById("alert").classList.add("alert-success");
+                            } else {
+                                returnObj.msg = "Sorry! You didn't enter a palindrome.";
+                                document.getElementById("alert").classList.remove("alert-success");
+                                document.getElementById("alert").classList.add("alert-danger");
+                            }
+
+                            returnObj.reversed = revString;
+
+                            return returnObj;
+                        }
+
+                        //display a message to the user
+                        function showMessage(returnObj){
+                            document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                            document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+                            document.getElementById("alert").classList.remove("invisible");
                         }
                     </code></pre>
                 </div>
